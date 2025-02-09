@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_exchangerate__history
+    description: >
+      Staging model that extracts and transforms the raw exchange rate data.
+      It converts the string date into a proper date type, extracts the base currency,
+      and casts the BRL conversion rate (from the JSON field) into a float.
+    columns:
+      - name: rate_date
+        description: "The exchange rate date, converted from a string in 'YYYY-MM-DD' format to a date type."
+      - name: base_currency
+        description: "The base currency code for the exchange rates (typically 'USD')."
+      - name: brl_rate
+        description: "The conversion rate from the base currency to Brazilian Real (BRL), extracted from the JSON field."

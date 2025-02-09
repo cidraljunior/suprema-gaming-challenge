@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: daily_betting_summary_brl
+    description: >
+      Mart model that aggregates the daily betting summary and converts USD values into BRL.
+      It achieves this by joining the betting staging model with the exchange rate staging model
+      on the corresponding date.
+    columns:
+      - name: date
+        description: "Betting date, carried over from the staging model."
+      - name: profit_usd
+        description: "Daily profit in USD."
+      - name: bet_amount_usd
+        description: "Daily bet amount in USD."
+      - name: players
+        description: "Number of players who placed bets on the corresponding date."
+      - name: profit_brl
+        description: "Daily profit converted to Brazilian Real (BRL) using the exchange rate for that date."
+      - name: bet_amount_brl
+        description: "Daily bet amount converted to Brazilian Real (BRL) using the exchange rate for that date."

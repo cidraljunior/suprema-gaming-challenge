@@ -1,0 +1,32 @@
+name: 'analytics'
+version: '1.0.0'
+config-version: 2
+
+profile: 'snowflake'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  analytics:
+    staging:
+      +materialized: view
+      schema: staging
+      +meta:
+        dagster:
+          group: staging
+
+    marts:
+      +materialized: table
+      schema: marts
+      +meta:
+        dagster:
+          group: marts

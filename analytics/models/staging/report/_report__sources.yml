@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: airbyte_raw
+    database: airbyte_db
+    schema: raw
+    tables:
+      - name: report_daily_betting_summary
+        description: >
+          Raw table from Airbyte containing daily betting summary data.
+          It includes fields such as profit, number of players, and total bet amount (in USD)
+          with the date provided in MM/DD/YYYY format.

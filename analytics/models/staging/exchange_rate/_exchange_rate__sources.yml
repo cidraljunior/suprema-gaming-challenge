@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: airbyte_raw
+    database: airbyte_db
+    schema: raw
+    tables:
+      - name: exchangerate_history
+        description: >
+          Raw table from Airbyte containing historical exchange rate data.
+          The field `conversion_rates` is stored as a JSON object with conversion rates for multiple currencies.

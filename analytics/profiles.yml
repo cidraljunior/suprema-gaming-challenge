@@ -1,0 +1,27 @@
+snowflake:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_HOST') }}"
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      role: transformer
+      database: DATA_ANALYTICS
+      warehouse: TRANSFORMING
+      schema: dbt_dev
+      threads: 4
+      client_session_keep_alive: False
+      query_tag: dbt_local
+    prod:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_HOST') }}"
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      role: transformer
+      database: DATA_ANALYTICS
+      warehouse: TRANSFORMING
+      schema: dbt
+      threads: 4
+      client_session_keep_alive: False
+      query_tag: dbt_local

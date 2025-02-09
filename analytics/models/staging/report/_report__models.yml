@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_report__daily_betting_summary
+    description: >
+      Staging model that extracts and transforms the raw daily betting summary data.
+      It converts the string date (in MM/DD/YYYY format) into a date type and renames and selects
+      the key performance fields.
+    columns:
+      - name: bet_date
+        description: "The betting date, converted from a string in 'MM/DD/YYYY' format to a date type."
+      - name: profit
+        description: "Profit in USD recorded for the given betting date."
+      - name: players
+        description: "Number of players who placed bets on the given date."
+      - name: bet_amount
+        description: "Total bet amount in USD for the given date."
