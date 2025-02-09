@@ -1,0 +1,4 @@
+locations:
+  - location_name: orchestrator
+    code_source:
+      module_name: orchestrator.definitions
