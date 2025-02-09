@@ -1,21 +1,54 @@
 version: 2
 
 models:
-  - name: daily_betting_summary_brl
-    description: >
-      Mart model that aggregates the daily betting summary and converts USD values into BRL.
-      It achieves this by joining the betting staging model with the exchange rate staging model
-      on the corresponding date.
+  - name: dim_date
+    description: Date dimension table
     columns:
+      - name: date_key
+        description: Surrogate key for date dimension
+        tests:
+          - unique
+          - not_null
       - name: date
-        description: "Betting date, carried over from the staging model."
+        description: Date in YYYY-MM-DD format
+      - name: year
+        description: Calendar year
+      - name: month
+        description: Calendar month (1-12)
+      - name: day
+        description: Day of month (1-31)
+      - name: quarter
+        description: Calendar quarter (1-4)
+      - name: day_of_week
+        description: Day of week (1=Sunday-7=Saturday)
+      - name: day_of_year
+        description: Day of year (1-366)
+  
+  - name: fact_daily_betting
+    description: Daily betting facts with currency conversion
+    columns:
+      - name: date_key
+        description: Foreign key to date dimension
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: bet_date
+        description: Date in YYYY-MM-DD format
+      - name: total_players
+        description: Number of active players
       - name: profit_usd
-        description: "Daily profit in USD."
+        description: Daily profit in USD
       - name: bet_amount_usd
-        description: "Daily bet amount in USD."
-      - name: players
-        description: "Number of players who placed bets on the corresponding date."
+        description: Total bets placed in USD
+      - name: brl_rate
+        description: USD->BRL conversion rate
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false
       - name: profit_brl
-        description: "Daily profit converted to Brazilian Real (BRL) using the exchange rate for that date."
+        description: Daily profit in BRL
       - name: bet_amount_brl
-        description: "Daily bet amount converted to Brazilian Real (BRL) using the exchange rate for that date."
+        description: Total bets placed in BRL
