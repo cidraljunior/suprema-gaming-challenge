@@ -19,6 +19,7 @@ date_spine as (
         extract(month from date_day) as month,
         extract(day from date_day) as day,
         extract(quarter from date_day) as quarter,
+        extract(week from date_day) as week_of_year,
         extract(dayofweek from date_day) as day_of_week,
         extract(day from date_day) as day_of_month,
     

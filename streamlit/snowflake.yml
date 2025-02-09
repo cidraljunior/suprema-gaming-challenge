@@ -1,0 +1,12 @@
+definition_version: '2'
+entities:
+  streamlit_app:
+    type: streamlit
+    identifier:
+      name: daily_betting_dashboard
+    main_file: streamlit_app.py
+    query_warehouse: reporting
+    stage: testing
+    artifacts:
+      - streamlit_app.py
+      - environment.yml
